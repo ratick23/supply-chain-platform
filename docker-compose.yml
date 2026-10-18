@@ -1,14 +1,28 @@
 version: '3.8'
 
 services:
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: supply_chain_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
   dq-check:
     build: .
     container_name: supply_chain_dq
     working_dir: /app/Data_engineering/Data_quality
-    # Runs the DQ script and exits
     command: python dq_check.py --config settings.config
     volumes:
-      # Mount the local raw_file directory so the container can read the CSVs
       - ./Data_engineering/Data_quality/raw_file:/app/Data_engineering/Data_quality/raw_file
-      # Mount a shared data directory to persist the Parquet logs locally
       - ./data:/app/Data_engineering/Data_quality/data
+    depends_on:
+      - postgres_db
+
+volumes:
+  postgres_data:

@@ -1,1 +1,14 @@
+# --- Phase 2: Data Engineering & Quality ---
 duckdb>=0.10.0
+psycopg2-binary>=2.9.0
+
+# --- Phase 1: API Service ---
+fastapi>=0.110.0
+uvicorn>=0.29.0
+pydantic>=2.7.0
+
+# --- Phase 3: ML & GenAI Assistant ---
+pandas>=2.2.0
+scikit-learn>=1.4.0
+langchain>=0.1.0
+langchain-openai>=0.1.0
