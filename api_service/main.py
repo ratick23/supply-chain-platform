@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from logger import StructuredLoggingMiddleware
-from routers import health, shipments, routes, data_quality #, predictions
+from routers import health, shipments, routes, data_quality , predictions
 
 app = FastAPI(
     title="Supply Chain Intelligence Mini-Platform API",
@@ -25,7 +25,7 @@ app.include_router(health.router)
 app.include_router(shipments.router)
 app.include_router(routes.router)
 app.include_router(data_quality.router)
-#app.include_router(predictions.router)
+app.include_router(predictions.router)
 
 if __name__ == "__main__":
     import uvicorn
