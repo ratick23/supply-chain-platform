@@ -13,3 +13,6 @@
 {"timestamp": "2026-10-26T08:45:24Z", "service": "api_service", "method": "GET", "path": "/routes/CNSHA/NLRTM/stats", "status_code": 200, "latency_ms": 73.68}
 {"timestamp": "2026-10-26T08:46:28Z", "service": "api_service", "method": "GET", "path": "/shipments/SHP-00001", "status_code": 200, "latency_ms": 29.39}
 {"timestamp": "2026-10-26T08:46:30Z", "service": "api_service", "method": "POST", "path": "/predict-delay", "status_code": 503, "latency_ms": 10.64}
+{"timestamp": "2026-10-26T09:15:45Z", "service": "api_service", "method": "GET", "path": "/shipments/SHP-00001", "status_code": 200, "latency_ms": 34.21}
+{"timestamp": "2026-10-26T09:15:49Z", "service": "api_service", "method": "POST", "path": "/predict-delay", "status_code": 200, "latency_ms": 1934.12}
+{"timestamp": "2026-10-26T09:21:01Z", "service": "api_service", "method": "GET", "path": "/shipments", "status_code": 200, "latency_ms": 65.03}
