@@ -2,11 +2,11 @@ import os
 import joblib
 import pandas as pd
 from fastapi import APIRouter, HTTPException
-from api_service.models import DelayPredictionRequest, DelayPredictionResponse
+from models import DelayPredictionRequest, DelayPredictionResponse
 
 router = APIRouter(tags=["Predictions"])
 
-MODEL_PATH = os.getenv("MODEL_PATH", "ml_models/delay_model.joblib")
+MODEL_PATH = os.getenv("MODEL_PATH", "../ml_models/delay_model.joblib")
 model_pipeline = None
 
 def get_model():

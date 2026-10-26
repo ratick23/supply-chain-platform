@@ -1,0 +1,15 @@
+{"timestamp": "2026-10-20T14:49:01Z", "service": "api_service", "method": "GET", "path": "/", "status_code": 404, "latency_ms": 0.95}
+{"timestamp": "2026-10-20T14:49:01Z", "service": "api_service", "method": "GET", "path": "/favicon.ico", "status_code": 404, "latency_ms": 0.39}
+{"timestamp": "2026-10-20T14:49:04Z", "service": "api_service", "method": "GET", "path": "/", "status_code": 404, "latency_ms": 0.24}
+{"timestamp": "2026-10-20T14:49:26Z", "service": "api_service", "method": "GET", "path": "/", "status_code": 404, "latency_ms": 0.64}
+{"timestamp": "2026-10-20T14:49:26Z", "service": "api_service", "method": "GET", "path": "/favicon.ico", "status_code": 404, "latency_ms": 0.52}
+{"timestamp": "2026-10-20T14:50:00Z", "service": "api_service", "method": "GET", "path": "/docs", "status_code": 200, "latency_ms": 0.56}
+{"timestamp": "2026-10-20T14:50:00Z", "service": "api_service", "method": "GET", "path": "/openapi.json", "status_code": 200, "latency_ms": 112.78}
+{"timestamp": "2026-10-26T08:14:01Z", "service": "api_service", "method": "GET", "path": "/routes/SHANGHAI/ROTTERDAM/stats", "status_code": 404, "latency_ms": 137.83}
+{"timestamp": "2026-10-26T08:15:44Z", "service": "api_service", "method": "GET", "path": "/routes/CNSHA/NLRTM/stats", "status_code": 200, "latency_ms": 30.34}
+{"timestamp": "2026-10-26T08:20:29Z", "service": "api_service", "method": "GET", "path": "/routes/CNSHA/NLRTM/stats", "status_code": 200, "latency_ms": 12.01}
+{"timestamp": "2026-10-26T08:21:47Z", "service": "api_service", "method": "GET", "path": "/shipments/SHP-00001", "status_code": 200, "latency_ms": 83.13}
+{"timestamp": "2026-10-26T08:21:49Z", "service": "api_service", "method": "POST", "path": "/predict-delay", "status_code": 503, "latency_ms": 27.46}
+{"timestamp": "2026-10-26T08:45:24Z", "service": "api_service", "method": "GET", "path": "/routes/CNSHA/NLRTM/stats", "status_code": 200, "latency_ms": 73.68}
+{"timestamp": "2026-10-26T08:46:28Z", "service": "api_service", "method": "GET", "path": "/shipments/SHP-00001", "status_code": 200, "latency_ms": 29.39}
+{"timestamp": "2026-10-26T08:46:30Z", "service": "api_service", "method": "POST", "path": "/predict-delay", "status_code": 503, "latency_ms": 10.64}

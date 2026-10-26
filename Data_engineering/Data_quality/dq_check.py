@@ -8,6 +8,21 @@ from datetime import datetime
 import ports_processor
 import shipments_processor
 import events_processor
+import logging
+
+LOG_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+DQ_LOG_FILE = os.path.join(LOG_DIR, "data_quality.log")
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] [DataQuality]: %(message)s',
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler(DQ_LOG_FILE, encoding='utf-8')
+    ]
+)
+logger = logging.getLogger("DataQuality")
 
 def load_config(config_path="settings.config"):
     config = configparser.ConfigParser()
@@ -37,12 +52,12 @@ def main():
 
     conn = duckdb.connect(database=':memory:')
 
-    print(f"Setting up virtual tables reading from: {data_dir}...")
+    logger.info(f"Setting up virtual tables reading from: {data_dir}...")
     setup_virtual_tables(conn, config)
 
     all_issues = []
 
-    print("Executing Ports module...")
+    logger.info("Executing Ports module...")
     all_issues.extend(
         ports_processor.check_ports(
             conn,
@@ -53,7 +68,7 @@ def main():
         )
     )
 
-    print("Executing Shipments module...")
+    logger.info("Executing Shipments module...")
     all_issues.extend(
         shipments_processor.check_shipments(
             conn,
@@ -62,7 +77,7 @@ def main():
         )
     )
 
-    print("Executing Events module...")
+    logger.info("Executing Events module...")
     all_issues.extend(
         events_processor.check_events(
             conn,
@@ -112,16 +127,16 @@ def main():
 
     conn.execute(f"COPY dq_results TO '{parquet_path}' (FORMAT PARQUET)")
 
-    print(f"\nData Quality checks finished. Found {len(all_issues)} issues.")
-    print(f"Logged directly to Parquet via DuckDB: {parquet_path}")
+    logger.info(f"\nData Quality checks finished. Found {len(all_issues)} issues.")
+    logger.info(f"Logged directly to Parquet via DuckDB: {parquet_path}")
 
     # Evaluate Hard vs Soft Checks
     hard_failures = [issue for issue in all_issues if issue.get("check_type") == "hard"]
     if hard_failures:
-        print(f"\nCRITICAL: {len(hard_failures)} hard check(s) failed. Halting pipeline execution.")
+        logger.info(f"\nCRITICAL: {len(hard_failures)} hard check(s) failed. Halting pipeline execution.")
         sys.exit(1)
     else:
-        print("\nSUCCESS: All hard checks passed. Ready for ingestion.")
+        logger.info("\nSUCCESS: All hard checks passed. Ready for ingestion.")
         sys.exit(0)
 
 if __name__ == "__main__":

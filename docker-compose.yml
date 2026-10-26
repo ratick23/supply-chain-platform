@@ -12,6 +12,11 @@ services:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   dq-check:
     build: .
@@ -21,8 +26,46 @@ services:
     volumes:
       - ./Data_engineering/Data_quality/raw_file:/app/Data_engineering/Data_quality/raw_file
       - ./data:/app/Data_engineering/Data_quality/data
+      - ./logs:/app/logs
     depends_on:
-      - postgres_db
+      postgres_db:
+        condition: service_healthy
+
+  data-pipeline:
+    build: .
+    container_name: supply_chain_pipeline
+    working_dir: /app/Data_engineering/data_pipeline
+    environment:
+      DB_HOST: postgres_db
+      DB_PORT: 5432
+    command: >
+      sh -c "python db_init.py && python pipeline_orchestrator.py"
+    volumes:
+      - ./Data_engineering/Data_quality/raw_file:/app/Data_engineering/Data_quality/raw_file
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+
+  api_service:
+    build: .
+    container_name: supply_chain_api
+    working_dir: /app
+    environment:
+      DB_HOST: postgres_db
+      DB_PORT: 5432
+      LOG_DIR: /app/logs
+    command: uvicorn api_service.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./ml_models:/app/ml_models
+    depends_on:
+      postgres_db:
+        condition: service_healthy
 
 volumes:
   postgres_data:

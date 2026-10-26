@@ -1,15 +1,28 @@
 import logging
 import json
 import time
+import os
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 
+LOG_DIR = os.getenv("LOG_DIR", os.path.join(os.path.dirname(__file__), "..", "logs"))
+os.makedirs(LOG_DIR, exist_ok=True)
+API_LOG_FILE = os.path.join(LOG_DIR, "api_service.log")
+
+# Setup logger
 logger = logging.getLogger("api_structured_logger")
 logger.setLevel(logging.INFO)
-handler = logging.StreamHandler()
-handler.setFormatter(logging.Formatter("%(message)s"))
+
 if not logger.handlers:
-    logger.addHandler(handler)
+    # 1. Console handler
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(logging.Formatter("%(message)s"))
+    logger.addHandler(console_handler)
+
+    # 2. Persistent file handler
+    file_handler = logging.FileHandler(API_LOG_FILE, encoding="utf-8")
+    file_handler.setFormatter(logging.Formatter("%(message)s"))
+    logger.addHandler(file_handler)
 
 class StructuredLoggingMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
@@ -19,6 +32,7 @@ class StructuredLoggingMiddleware(BaseHTTPMiddleware):
 
         log_payload = {
             "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "service": "api_service",
             "method": request.method,
             "path": request.url.path,
             "status_code": response.status_code,

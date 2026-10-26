@@ -2,7 +2,7 @@ import os
 import configparser
 from langgraph.graph import StateGraph, END
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
-from langchain_openai import ChatOpenAI
+from langchain_ollama import ChatOllama
 
 from assistant.state import AgentState
 from assistant.prompts import SYSTEM_PROMPT
@@ -19,11 +19,10 @@ MAX_CALLS = int(config.get("guardrails", "max_tool_calls_per_session", fallback=
 tools = [query_shipments, get_route_stats, predict_delay]
 tool_map = {t.name: t for t in tools}
 
-llm = ChatOpenAI(
-    model=config.get("llm", "model_name", fallback="gpt-4o-mini"),
+llm = ChatOllama(
+    model=config.get("llm", "model_name", fallback="llama3"),
     temperature=float(config.get("llm", "temperature", fallback="0.0"))
 ).bind_tools(tools)
-
 # --- NODES ---
 
 def guardrail_node(state: AgentState):
