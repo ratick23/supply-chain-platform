@@ -51,12 +51,13 @@ services:
   api_service:
     build: .
     container_name: supply_chain_api
-    working_dir: /app
+    working_dir: /app/api_service
     environment:
       DB_HOST: postgres_db
       DB_PORT: 5432
       LOG_DIR: /app/logs
-    command: uvicorn api_service.main:app --host 0.0.0.0 --port 8000
+      MODEL_PATH: /app/ml_models/delay_model.joblib
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
     ports:
       - "8000:8000"
     volumes:

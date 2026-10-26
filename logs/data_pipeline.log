@@ -6,3 +6,106 @@
 2026-10-19 10:45:37,851 [INFO] [DataPipeline]: [Step 3/3]: Starting Gold Aggregator (Star Schema / Fact & Dim Tables)
 2026-10-19 10:45:38,872 [INFO] [DataPipeline]: [Step 3/3]: Gold Aggregator finished successfully.
 2026-10-19 10:45:38,873 [INFO] [DataPipeline]: === Pipeline Execution Completed Successfully ===
+2026-10-26 09:44:50,308 [INFO] [DataPipeline]: === Starting Data Pipeline Run ===
+2026-10-26 09:44:50,309 [INFO] [DataPipeline]: [Step 1/3]: Starting Bronze Loader (Staging Truncate & Load)
+2026-10-26 09:44:50,312 [ERROR] [DataPipeline]: Pipeline execution aborted due to error: connection to server at "127.0.0.1", port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/Data_engineering/data_pipeline/pipeline_orchestrator.py", line 30, in run_pipeline
+    load_bronze(config)
+  File "/app/Data_engineering/data_pipeline/bronze_loader.py", line 17, in load_bronze
+    conn = get_db_connection(config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/Data_engineering/data_pipeline/bronze_loader.py", line 7, in get_db_connection
+    return psycopg2.connect(
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "127.0.0.1", port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2026-10-26 15:24:52,510 [INFO] [DataPipeline]: === Starting Data Pipeline Run ===
+2026-10-26 15:24:52,511 [INFO] [DataPipeline]: [Step 1/3]: Starting Bronze Loader (Staging Truncate & Load)
+2026-10-26 15:24:52,742 [INFO] [DataPipeline]: [Step 1/3]: Bronze Loader finished successfully.
+2026-10-26 15:24:52,743 [INFO] [DataPipeline]: [Step 2/3]: Starting Silver Transformer (SCD Type 2 & Business Metrics)
+2026-10-26 15:24:52,969 [INFO] [DataPipeline]: [Step 2/3]: Silver Transformer finished successfully.
+2026-10-26 15:24:52,970 [INFO] [DataPipeline]: [Step 3/3]: Starting Gold Aggregator (Star Schema / Fact & Dim Tables)
+2026-10-26 15:24:53,927 [INFO] [DataPipeline]: [Step 3/3]: Gold Aggregator finished successfully.
+2026-10-26 15:24:53,927 [INFO] [DataPipeline]: === Pipeline Execution Completed Successfully ===
+2026-10-26 10:02:39,703 [INFO] [DataPipeline]: === Starting Data Pipeline Run ===
+2026-10-26 10:02:39,705 [INFO] [DataPipeline]: [Step 1/3]: Starting Bronze Loader (Staging Truncate & Load)
+2026-10-26 10:02:39,706 [ERROR] [DataPipeline]: Pipeline execution aborted due to error: connection to server at "127.0.0.1", port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/Data_engineering/data_pipeline/pipeline_orchestrator.py", line 30, in run_pipeline
+    load_bronze(config)
+  File "/app/Data_engineering/data_pipeline/bronze_loader.py", line 17, in load_bronze
+    conn = get_db_connection(config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/Data_engineering/data_pipeline/bronze_loader.py", line 7, in get_db_connection
+    return psycopg2.connect(
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "127.0.0.1", port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2026-10-26 10:09:41,051 [INFO] [DataPipeline]: === Starting Data Pipeline Run ===
+2026-10-26 10:09:41,052 [INFO] [DataPipeline]: [Step 1/3]: Starting Bronze Loader (Staging Truncate & Load)
+2026-10-26 10:09:41,054 [ERROR] [DataPipeline]: Pipeline execution aborted due to error: connection to server at "127.0.0.1", port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/Data_engineering/data_pipeline/pipeline_orchestrator.py", line 30, in run_pipeline
+    load_bronze(config)
+  File "/app/Data_engineering/data_pipeline/bronze_loader.py", line 17, in load_bronze
+    conn = get_db_connection(config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/Data_engineering/data_pipeline/bronze_loader.py", line 7, in get_db_connection
+    return psycopg2.connect(
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "127.0.0.1", port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2026-10-26 10:34:08,581 [INFO] [DataPipeline]: === Starting Data Pipeline Run ===
+2026-10-26 10:34:08,582 [INFO] [DataPipeline]: [Step 1/3]: Starting Bronze Loader (Staging Truncate & Load)
+2026-10-26 10:34:08,583 [ERROR] [DataPipeline]: Pipeline execution aborted due to error: connection to server at "127.0.0.1", port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/Data_engineering/data_pipeline/pipeline_orchestrator.py", line 30, in run_pipeline
+    load_bronze(config)
+  File "/app/Data_engineering/data_pipeline/bronze_loader.py", line 17, in load_bronze
+    conn = get_db_connection(config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/Data_engineering/data_pipeline/bronze_loader.py", line 7, in get_db_connection
+    return psycopg2.connect(
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "127.0.0.1", port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2026-10-26 10:40:25,319 [INFO] [DataPipeline]: === Starting Data Pipeline Run ===
+2026-10-26 10:40:25,320 [INFO] [DataPipeline]: [Step 1/3]: Starting Bronze Loader (Staging Truncate & Load)
+2026-10-26 10:40:25,321 [ERROR] [DataPipeline]: Pipeline execution aborted due to error: connection to server at "127.0.0.1", port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/Data_engineering/data_pipeline/pipeline_orchestrator.py", line 30, in run_pipeline
+    load_bronze(config)
+  File "/app/Data_engineering/data_pipeline/bronze_loader.py", line 17, in load_bronze
+    conn = get_db_connection(config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/Data_engineering/data_pipeline/bronze_loader.py", line 7, in get_db_connection
+    return psycopg2.connect(
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "127.0.0.1", port 5433 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
