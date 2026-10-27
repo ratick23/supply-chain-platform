@@ -53,3 +53,9 @@
 {"timestamp": "2026-10-27T08:42:32Z", "service": "api_service", "method": "GET", "path": "/shipments/SHP-00001", "status_code": 200, "latency_ms": 84.02}
 {"timestamp": "2026-10-27T08:42:36Z", "service": "api_service", "method": "POST", "path": "/predict-delay", "status_code": 200, "latency_ms": 3859.58}
 {"timestamp": "2026-10-27T08:43:42Z", "service": "api_service", "method": "GET", "path": "/shipments", "status_code": 200, "latency_ms": 31.89}
+{"timestamp": "2026-10-27T08:55:59Z", "service": "api_service", "method": "GET", "path": "/data-quality/report", "status_code": 200, "latency_ms": 126.44}
+{"timestamp": "2026-10-27T08:56:40Z", "service": "api_service", "method": "GET", "path": "/docs", "status_code": 200, "latency_ms": 1.02}
+{"timestamp": "2026-10-27T08:56:41Z", "service": "api_service", "method": "GET", "path": "/openapi.json", "status_code": 200, "latency_ms": 66.03}
+{"timestamp": "2026-10-27T09:00:10Z", "service": "api_service", "method": "GET", "path": "/routes/CNSHA/NLRTM/stats", "status_code": 200, "latency_ms": 38.37}
+{"timestamp": "2026-10-27T09:01:20Z", "service": "api_service", "method": "GET", "path": "/shipments/SHP-00001", "status_code": 200, "latency_ms": 25.04}
+{"timestamp": "2026-10-27T09:01:22Z", "service": "api_service", "method": "POST", "path": "/predict-delay", "status_code": 200, "latency_ms": 2164.08}
