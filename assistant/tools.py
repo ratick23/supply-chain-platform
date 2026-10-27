@@ -3,6 +3,7 @@ from typing import Optional, Dict, Any
 from langchain_core.tools import tool
 import configparser
 import os
+import requests
 
 config = configparser.ConfigParser()
 config.read(os.path.join(os.path.dirname(__file__), "settings.config"))
@@ -73,3 +74,18 @@ def predict_delay(shipment_id: str) -> Dict[str, Any]:
         return pred_resp.json()
     except requests.RequestException as e:
         return {"error": f"Failed to predict delay for {shipment_id}: {str(e)}"}
+
+
+
+@tool
+def get_data_quality_report() -> dict:
+    """
+    Fetches the latest data quality check report, inspection logs, 
+    and issues found during ingestion from the backend API service.
+    """
+    try:
+        response = requests.get("http://localhost:8000/data-quality/report")
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        return {"error": f"Failed to retrieve data quality report: {str(e)}"}

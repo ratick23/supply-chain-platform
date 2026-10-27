@@ -2,13 +2,18 @@ from fastapi import APIRouter, HTTPException
 import duckdb
 import glob
 import os
-import configparser
 
 router = APIRouter(prefix="/data-quality", tags=["Data Quality"])
 
-config = configparser.ConfigParser()
-config.read(os.path.join(os.path.dirname(__file__), "..", "settings.config"))
-log_dir = config["paths"]["dq_log_dir"]
+# Explicitly target the shared volume path inside the Docker container
+# Fallback to local relative path if running outside Docker
+if os.path.exists("/app/data"):
+    log_dir = "/app/data/dq_logs"
+else:
+    log_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data", "dq_logs"))
+
+# Allow environment variable override
+log_dir = os.getenv("DQ_LOG_DIR", log_dir)
 
 @router.get("/report")
 def get_dq_report():
@@ -16,7 +21,7 @@ def get_dq_report():
     files = glob.glob(parquet_pattern)
 
     if not files:
-        raise HTTPException(status_code=404, detail="No data quality report found on disk")
+        raise HTTPException(status_code=404, detail=f"No data quality report found in {log_dir}")
 
     latest_file = max(files, key=os.path.getmtime)
     

@@ -6,7 +6,7 @@ from langchain_ollama import ChatOllama
 
 from assistant.state import AgentState
 from assistant.prompts import SYSTEM_PROMPT
-from assistant.tools import query_shipments, get_route_stats, predict_delay
+from assistant.tools import query_shipments, get_route_stats, predict_delay , get_data_quality_report
 from assistant.guardrails import check_guardrails
 from assistant.logger import log_interaction
 
@@ -16,7 +16,7 @@ config.read(os.path.join(os.path.dirname(__file__), "settings.config"))
 MAX_CALLS = int(config.get("guardrails", "max_tool_calls_per_session", fallback="4"))
 
 # Bind tools to LLM
-tools = [query_shipments, get_route_stats, predict_delay]
+tools = [get_data_quality_report,query_shipments, get_route_stats, predict_delay]
 tool_map = {t.name: t for t in tools}
 
 llm = ChatOllama(
